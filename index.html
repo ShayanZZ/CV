@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Shayan Zeifozaman - DevOps Engineer</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ <style>
+  /* Global Styles */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    text-align: justify;
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+
+  /* Header Styles */
+  header {
+    background-color: #2c3e50;
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    animation: slideInDown 1s forwards;
+  }
+
+  /* Main Content Styles */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  /* Section Styles */
+  section {
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease, background-color 0.5s ease;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Typography Styles */
+  h1 {
+    font-size: 2.5em;
+    margin: 0 0 10px;
+  }
+
+  h2 {
+    font-size: 2em;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    transition: color 0.5s ease, border-bottom-color 0.5s ease;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    color: #34495e;
+    margin: 25px 0 15px;
+    transition: color 0.5s ease;
+  }
+
+  /* List Styles */
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+  }
+
+  li:before {
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  /* Other Element Styles */
+  p {
+    margin-bottom: 15px;
+  }
+
+  strong {
+    font-weight: 600;
+    color: #2c3e50;
+    transition: color 0.5s ease;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #2980b9;
+  }
+
+  .contact-info i {
+    margin-right: 10px;
+    color: #3498db;
+  }
+
+  /* Button Styles */
+  #dark-mode-toggle, #back-to-top {
+    position: fixed;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    opacity: 0;
+    font-size: 1.2em;
+  }
+
+  #dark-mode-toggle {
+    top: 20px;
+    right: 20px;
+    transform: scale(0.8);
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  #dark-mode-toggle i {
+    transition: transform 0.8s ease;
+  }
+
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.2em;
+    transform: translateY(20px);
+    pointer-events: none;
+    transition: background-color 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  #dark-mode-toggle:hover, #back-to-top:hover {
+    background-color: #2373a8;
+  }
+
+  #dark-mode-toggle.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  #back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Dark Mode Styles */
+  body.dark-mode {
+    background-color: #1a1a1a;
+    color: #f0f0f0;
+  }
+
+  body.dark-mode section {
+    background-color: #2a2a2a;
+  }
+
+  body.dark-mode h2 {
+    color: #3498db;
+    border-bottom-color: #3498db;
+  }
+
+  body.dark-mode h3, body.dark-mode strong {
+    color: #3498db;
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    #dark-mode-toggle {
+      top: 10px;
+      right: 10px;
+      position: absolute;
+    }
+
+    #back-to-top {
+      bottom: 10px;
+      right: 10px;
+    }
+
+    header {
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 1.8em;
+    }
+
+    h2 {
+      font-size: 1.5em;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+
+    body {
+      font-size: 0.9em;
+    }
+  }
+
+  /* Animations */
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+ </style>
+</head>
+<body>
+ <header>
+   <h1>Shayan Zeifozaman</h1>
+   <p>DevOps Engineer</p>
+ </header>
+ <main>
+   <section>
+     <h2>Summary</h2>
+     <p>A DevOps Engineer with a solid background in IT, computer networks, and some mobile development experience. Proven ability to troubleshoot complex issues and implement solutions with a keen eye for detail. Bringing a problem-solving mindset and experience in collaborating with cross-functional teams to bridge the gap between development and operations, leveraging my background in both network and development.</p>
+   </section>
+
+   <section>
+     <h2>Contact</h2>
+     <p class="contact-info"><i class="fas fa-map-marker-alt"></i> Tehran Pars, Tehran, Iran</p>
+     <p class="contact-info"><i class="fas fa-envelope"></i> shayan.z.92@gmail.com</p>
+     <p class="contact-info"><i class="fas fa-phone"></i> (+98) 935 215 3074</p>
+   </section>
+
+   <section>
+     <h2>Skills</h2>
+     <ul>
+       <li>Working knowledge of <strong>Docker</strong> and <strong>docker-compose</strong> for building and deploying containerized applications.</li>
+       <li>Hands-on experience with CI/CD tools like <strong>Jenkins</strong>, <strong>GitLab CI/CD</strong>, and <strong>GitHub Actions</strong> to automate build, test, and deployment processes.</li>
+       <li>Basic understanding of scripting languages like <strong>Bash</strong>, <strong>Python</strong>, and <strong>PowerShell</strong> for automating tasks and interacting with systems.</li>
+       <li>Experience with monitoring tools like <strong>Prometheus</strong> and <strong>Grafana</strong> for system and application monitoring.</li>
+       <li>Familiarity with <strong>Terraform</strong> for Infrastructure as Code (IaC).</li>
+       <li>Knowledge of networking concepts like <strong>TCP/IP</strong>, <strong>DNS</strong>, <strong>VPNs</strong>, <strong>Firewalls</strong>, and <strong>Load Balancing</strong>.</li>
+       <li>Understanding of <strong>Kubernetes</strong> and <strong>Helm</strong> for container orchestration and management.</li>
+       <li>Familiarity with <strong>Ansible</strong> for configuration management and automation.</li>
+       <li>Version control using <strong>Git</strong>, <strong>GitHub</strong>, and <strong>GitLab</strong>.</li>
+       <li>Experience with <strong>Linux</strong> distributions like Ubuntu and CentOS, and <strong>Windows Server</strong>.</li>
+       <li>Mobile development experience with <strong>Kotlin</strong> and <strong>Flutter</strong>.</li>
+       <li>Awareness of security best practices in DevOps, including secure coding, infrastructure hardening, and compliance monitoring.</li>
+       <li>Excellent problem-solving skills, with the ability to quickly identify and resolve complex technical issues.</li>
+       <li>Fast learner, adaptable to new technologies and methodologies, and able to thrive in a dynamic environment.</li>
+       <li>Effective communication and collaboration skills, enabling seamless teamwork and knowledge sharing.</li>
+     </ul>
+    </section>
+
+    <section>
+      <h2>Certifications</h2>
+      <ul>
+       <li>Cisco Certified Network Associate (CCNA)</li>
+       <li>CompTIA Network+</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <ul>
+        <li>Developed a Node.js web application with user authentication using MongoDB, containerized with Docker, and deployed on a Kubernetes cluster via a Jenkins CI/CD pipeline. <a href="https://github.com/ShayanZZ/devops-node-mongo-app">(Project Link)</a></li>
+        <li>Built and deployed a Flutter app that displays League of Legends champion details using GitHub Actions for CI/CD. <a href="https://github.com/ShayanZZ/LoLoPedia/">(Project Link)</a></li>
+      </ul>
+    </section>
+   
+   <section>
+    <h2>Experience</h2>
+    <h3>IT Support Specialist</h3>
+    <p>EZApply, Tehran, Iran (Nov 2017 – Jan 2021)</p>
+    <ul>
+      <li>Provided technical support to staff and clients, resolving hardware and software issues.</li>
+      <li>Managed and maintained network infrastructure, ensuring optimal performance and security.</li>
+      <li>Managed hosting environments on cPanel, optimizing configurations for better performance and reliability.</li>
+      <li>Designed and created applicant websites and CVs, enhancing user engagement and application success rates.</li>
+    </ul>
+
+    <h3>App Review Specialist</h3>
+    <p>Hamisun IT Group, Tehran, Iran (Mar 2016 – Nov 2017)</p>
+    <ul>
+      <li>Reviewed and tested Android applications (including games) submitted to Cafebazaar for compliance with their platform-specific guidelines, ensuring a positive user experience for millions of customers.</li>
+      <li>Performed comprehensive functional, security, and compatibility testing across multiple devices and Android versions to guarantee seamless app functionality.</li>
+      <li>Identified and reported critical issues, bugs, and inconsistencies, providing developers with detailed reports and actionable feedback to address them swiftly.</li>
+      <li>Offered insightful technical support to developers via email, resolving their inquiries quickly and efficiently with an average resolution time of less than 24 hours, fostering positive relationships, and streamlining the app review process.</li>
+    </ul>
+
+    <h3>IT Help Desk</h3>
+    <p>Ghaem Trade Co., Tehran, Iran (Jun 2013 – Jul 2014)</p>
+    <ul>
+      <li>Installed, configured, and maintained Windows-based workstations, printers, scanners, and other peripheral devices for internal users.</li>
+      <li>Set up System Center Operations Manager to provide greater granular monitoring for servers and all network devices.</li>
+      <li>Ensured network connectivity uptime between the company and its warehouse, proactively identifying and resolving network issues to maintain seamless communication and data flow.</li>
+      <li>Diagnosed and resolved a wide range of hardware and software issues, exceeding user expectations by identifying and offering solutions beyond immediate concerns.</li>
+      <li>Troubleshooted complex technical problems by escalating them to senior technicians or external vendors when necessary.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <h3>Bachelor of Science (B.Sc.) in Information Technology</h3>
+    <p>Payame Noor University, Tehran, Iran (Sep 2011 - Jul 2015)</p>
+  </section>
+
+  <section>
+    <h2>Languages</h2>
+    <ul>
+      <li>Farsi (Native)</li>
+      <li>English (IELTS Academic: 7)</li>
+      <li>German (Basic)</li>
+    </ul>
+  </section>
+ </main>
+
+ <button id="dark-mode-toggle"><i class="fas fa-moon"></i></button>
+ <button id="back-to-top" title="Back to Top"><i class="fas fa-arrow-up"></i></button>
+
+ <script>
+  // DOM elements
+  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const body = document.body;
+  const backToTopButton = document.getElementById('back-to-top');
+  const sections = document.querySelectorAll('section');
+
+  // Dark mode functionality
+  function setDarkMode(isDark) {
+    body.classList.toggle('dark-mode', isDark);
+    const icon = darkModeToggle.querySelector('i');
+    icon.classList.toggle('fa-moon', !isDark);
+    icon.classList.toggle('fa-sun', isDark);
+    icon.style.transform = isDark ? 'rotate(-90deg)' : 'rotate(0deg)';
+    localStorage.setItem('darkMode', isDark);
+  }
+
+  // Initialize dark mode
+  const savedDarkMode = localStorage.getItem('darkMode');
+  if (savedDarkMode !== null) {
+    setDarkMode(savedDarkMode === 'true');
+  } else {
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    setDarkMode(prefersDarkScheme.matches);
+  }
+
+  // Dark mode toggle event listener
+  darkModeToggle.addEventListener('click', () => {
+    setDarkMode(!body.classList.contains('dark-mode'));
+  });
+
+  // Scroll-triggered animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  // Observe all sections except the first three
+  Array.from(sections).slice(3).forEach(section => observer.observe(section));
+
+  // Updated Back to Top functionality
+  function updateBackToTopButton() {
+    const scrollThreshold = 800;
+    const isVisible = window.pageYOffset > scrollThreshold;
+    
+    backToTopButton.classList.toggle('visible', isVisible);
+  }
+
+  window.addEventListener('scroll', updateBackToTopButton);
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Initialize section visibility on page load
+  function initializeSections() {
+    const initialSections = Array.from(sections).slice(0, 3); // Get first three sections
+    initialSections.forEach((section, index) => {
+      setTimeout(() => {
+        section.classList.add('visible');
+      }, index * 300); // Staggered animation for first three sections
+    });
+  }
+
+  // Call after a short delay to ensure proper rendering
+  setTimeout(() => {
+    initializeSections();
+    darkModeToggle.classList.add('visible');
+  }, 500);
+
+  // Prevent automatic scrolling on refresh
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+ </script>
+</body>
+</html>
